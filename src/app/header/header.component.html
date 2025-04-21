@@ -1,6 +1,9 @@
 <header class="app-header">
-  <button mat-icon-button (click)="toggleSidenav.emit()" aria-label="Toggle sidenav">
-    <mat-icon>menu</mat-icon>
+  <button mat-icon-button (click)="toggleSidenav.emit()" class="menu-toggle" aria-label="Toggle navigation">
+    <span class="material-icons">menu</span>
   </button>
-  <h1>My App Header</h1>
+  <div class="header-brand">
+    <img src="assets/angular.svg" alt="Angular Logo" class="brand-logo">
+    <h1>Windsurf App Shell</h1>
+  </div>
 </header>

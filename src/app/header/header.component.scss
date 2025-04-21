@@ -1,0 +1,43 @@
+@use '../../styles/theme' as theme;
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: theme.$spacing-md;
+  padding: theme.$spacing-md;
+  background: theme.$primary-gradient;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .menu-toggle {
+    color: white;
+    opacity: 0.9;
+    transition: theme.$transition-base;
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    margin-left: theme.$spacing-md;
+
+    .brand-logo {
+      height: theme.rem(24);
+      width: auto;
+    }
+
+    h1 {
+      margin: 0 0 0 theme.$spacing-md;
+      font-size: theme.$font-size-xl;
+      font-weight: theme.$font-weight-medium;
+      line-height: 1;
+    }
+  }
+
+  .menu-toggle {
+    color: white;
+
+    .material-icons {
+      color: white;
+    }
+  }
+}
