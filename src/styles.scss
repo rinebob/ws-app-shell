@@ -1,6 +1,191 @@
+@use 'styles/theme' as theme;
+
 html, body {
-  overflow-y: hidden;
   height: 100%;
+  margin: 0;
+  font-family: theme.$font-family-base;
+  font-size: theme.$font-size-base;
+  background: theme.$background;
+  color: rgba(black, 0.87);
 }
 
-/* You can add global styles to this file, and also import other style files */
+// Material overrides
+.mat-toolbar {
+  background: theme.$primary-gradient !important;
+  color: white !important;
+  height: theme.$toolbar-height !important;
+  @include theme.elevation(2);
+}
+
+.mat-drawer {
+  width: theme.$sidenav-width;
+  background: white;
+  border: none !important;
+  @include theme.elevation(2);
+
+  .mat-nav-list {
+    padding-top: theme.$spacing-md;
+
+    .mat-list-item {
+      margin: theme.$spacing-xs;
+      border-radius: theme.$radius-sm;
+      transition: theme.$transition-base;
+      font-weight: theme.$font-weight-medium;
+
+      &:hover {
+        background: rgba(theme.$primary, 0.04);
+      }
+
+      &.active {
+        background: rgba(theme.$primary, 0.12);
+        color: theme.$primary;
+      }
+
+      .material-icons {
+        margin-right: theme.$spacing-sm;
+      }
+    }
+  }
+}
+
+.mat-card {
+  background: white;
+  border-radius: theme.$radius-md;
+  @include theme.elevation(2);
+  margin: theme.$spacing-md;
+  padding: 0;
+  overflow: hidden;
+
+  .mat-card-header {
+    background: theme.$primary-gradient;
+    color: white;
+    padding: theme.$spacing-md theme.$spacing-lg;
+    margin: 0;
+
+    .mat-card-title {
+      color: white;
+      margin: 0;
+      font-size: theme.$font-size-xl;
+    }
+
+    .mat-card-subtitle {
+      color: rgba(white, 0.9);
+      margin: theme.$spacing-xs 0 0;
+    }
+  }
+
+  .mat-card-content {
+    padding: theme.$spacing-lg;
+  }
+
+  .mat-card-actions {
+    margin: 0;
+    padding: theme.$spacing-md;
+    display: flex;
+    gap: theme.$spacing-sm;
+    justify-content: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.02);
+  }
+}
+
+.mat-raised-button {
+  display: inline-flex;
+  align-items: center;
+  gap: theme.$spacing-xs;
+  min-width: theme.rem(100);
+  padding: theme.$spacing-sm theme.$spacing-md;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+
+  &:hover {
+    @include theme.elevation(2);
+    transform: theme.rem(-1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .material-icons {
+    font-size: theme.rem(18);
+  }
+
+  &.mat-primary {
+    background: theme.$primary-gradient;
+    color: white;
+  }
+
+  &.mat-warn {
+    background: theme.$warn-gradient;
+    color: white;
+  }
+}
+
+.mat-button {
+  display: inline-flex;
+  align-items: center;
+  gap: theme.$spacing-xs;
+  min-width: theme.rem(100);
+  padding: theme.$spacing-sm theme.$spacing-md;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: white;
+  color: rgba(black, 0.87);
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.04);
+    @include theme.elevation(1);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.08);
+  }
+
+  .material-icons {
+    font-size: theme.rem(18);
+  }
+}
+
+// Value indicators
+.value-display {
+  display: inline-block;
+  padding: theme.$spacing-xs theme.$spacing-sm;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+
+  &.positive {
+    color: theme.$success;
+    background: rgba(theme.$success, 0.1);
+  }
+
+  &.negative {
+    color: theme.$warn;
+    background: rgba(theme.$warn, 0.1);
+  }
+
+  &.accent {
+    color: theme.$accent;
+    background: rgba(theme.$accent, 0.1);
+  }
+}
+
+// Layout
+.content-container {
+  padding: theme.$spacing-lg;
+  max-width: theme.rem(1200);
+  margin: 0 auto;
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.mb-1 { margin-bottom: theme.$spacing-sm; }
+.mb-2 { margin-bottom: theme.$spacing-md; }
+.mb-3 { margin-bottom: theme.$spacing-lg; }
+.mt-1 { margin-top: theme.$spacing-sm; }
+.mt-2 { margin-top: theme.$spacing-md; }
+.mt-3 { margin-top: theme.$spacing-lg; }
