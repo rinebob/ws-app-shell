@@ -1,0 +1,21 @@
+<mat-card class="counter-card">
+  <mat-card-header>
+    <mat-card-title>Counter</mat-card-title>
+    <mat-card-subtitle>NgRx Signals Demo</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content class="counter-content">
+    <p class="count-value">Current Count: <span [class.positive]="store.count() > 0" [class.negative]="store.count() < 0">{{ store.count() }}</span></p>
+    <p class="double-count">Double Count: <span [class.positive]="store.doubleCount() > 0" [class.negative]="store.doubleCount() < 0">{{ store.doubleCount() }}</span></p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="store.increment()">
+      <span class="material-icons">add</span> Increment
+    </button>
+    <button mat-raised-button color="warn" (click)="store.decrement()">
+      <span class="material-icons">remove</span> Decrement
+    </button>
+    <button mat-button (click)="store.reset()">
+      <span class="material-icons">refresh</span> Reset
+    </button>
+  </mat-card-actions>
+</mat-card>

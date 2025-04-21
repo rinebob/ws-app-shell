@@ -1,0 +1,92 @@
+@use '../../styles/theme' as theme;
+
+:host {
+  display: block;
+  max-width: 400px;
+}
+
+.counter-card {
+  background: white;
+  border-radius: theme.$radius-md;
+  box-shadow: theme.$shadow-md;
+  padding: theme.$spacing-md;
+  width: 100%;
+  max-width: theme.rem(400);
+  margin: theme.$spacing-lg auto;
+
+  mat-card-header {
+    background: theme.$primary-gradient;
+    margin: 0;
+    padding: theme.$spacing-md theme.$spacing-lg;
+    border-radius: theme.$radius-md theme.$radius-md 0 0;
+    color: white;
+
+    mat-card-title {
+      font-size: theme.$font-size-xl;
+      margin: 0;
+      color: white;
+    }
+
+    mat-card-subtitle {
+      color: rgba(white, 0.9);
+      margin: theme.$spacing-xs 0 0;
+    }
+  }
+
+  .counter-content {
+    padding: theme.$spacing-md 0;
+    text-align: center;
+
+    p {
+      margin: theme.$spacing-md 0;
+      font-size: theme.$font-size-lg;
+
+      span {
+        display: inline-block;
+        min-width: theme.rem(60);
+        padding: theme.$spacing-xs theme.$spacing-sm;
+        border-radius: theme.$radius-sm;
+        font-weight: theme.$font-weight-medium;
+        transition: theme.$transition-base;
+
+        &.positive {
+          color: theme.$success;
+          background: rgba(theme.$success, 0.1);
+        }
+
+        &.negative {
+          color: theme.$warn;
+          background: rgba(theme.$warn, 0.1);
+        }
+      }
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    gap: theme.$spacing-sm;
+    justify-content: center;
+    padding: theme.$spacing-md;
+    margin: 0;
+
+    button {
+      min-width: theme.rem(120);
+      display: inline-flex;
+      align-items: center;
+      gap: theme.$spacing-xs;
+      transition: theme.$transition-base;
+
+      &:hover {
+        transform: translateY(theme.rem(-1));
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+
+      .material-icons {
+        font-size: theme.rem(18);
+      }
+    }
+  }
+}
