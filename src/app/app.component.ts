@@ -4,7 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
 import { counter, increment, decrement, reset } from './signals-counter';
-import { HeaderComponent } from './header.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
