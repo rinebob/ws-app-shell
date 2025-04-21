@@ -24,10 +24,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ws-app-shell');
   });
 
-  it('should render title', () => {
+  it('should render title in toolbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ws-app-shell');
+    expect(compiled.querySelector('mat-toolbar span')?.textContent).toEqual('ws-app-shell');
   });
 });
