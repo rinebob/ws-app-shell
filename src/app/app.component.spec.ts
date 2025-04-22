@@ -1,33 +1,53 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { provideRouter } from '@angular/router';
+import { HeaderComponent } from './header/header.component';
 
 describe('AppComponent', () => {
-  beforeAll(async () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
+      imports: [
+        AppComponent,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        HeaderComponent
+      ],
+      providers: [
+        provideNoopAnimations(),
+        provideRouter([])
+      ]
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  beforeEach(() => {
-    TestBed.resetTestingModule();
-  });
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 
   it(`should have the 'ws-app-shell' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('ws-app-shell');
+    expect(component.title).toEqual('ws-app-shell');
   });
 
-  it('should render title in toolbar', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
+  it('should render sidenav with navigation links', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('mat-toolbar span')?.textContent).toEqual('ws-app-shell');
+    const links = compiled.querySelectorAll('mat-nav-list a');
+    expect(links.length).toBe(4);
+    expect(links[0].textContent).toContain('Home');
+    expect(links[1].textContent).toContain('Counter');
+    expect(links[2].textContent).toContain('Design System');
+    expect(links[3].textContent).toContain('Dividend Tracker');
   });
 });

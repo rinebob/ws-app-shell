@@ -1,5 +1,5 @@
 mat-sidenav-container {
-  height: 100vh;
+  height: auto;
 }
 
 mat-sidenav {
@@ -23,12 +23,7 @@ mat-sidenav-content {
 }
 
 .content-container {
-  padding: 24px;
   max-width: 1200px;
   margin: 0 auto;
   box-sizing: border-box;
-  
-  @media (max-width: 768px) {
-    padding: 16px;
-  }
 }
