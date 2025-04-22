@@ -16,6 +16,11 @@ $success: #4caf50;
 $info: #2196f3;
 $background: #fafafa;
 
+// Text colors
+$text-primary: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
+$text-disabled: rgba(0, 0, 0, 0.38);
+
 // Gradients
 $primary-gradient: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
 $accent-gradient: linear-gradient(135deg, $accent 0%, $accent-dark 100%);

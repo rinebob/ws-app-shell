@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CounterComponent } from './counter.component';
 import { CounterStore } from './store/counter.store';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 describe('CounterComponent', () => {
   let component: CounterComponent;
   let fixture: ComponentFixture<CounterComponent>;
-  let store: any;
+  let store: InstanceType<typeof CounterStore>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CounterComponent, NoopAnimationsModule]
-    }).compileComponents();
+      imports: [CounterComponent],
+      providers: [
+        CounterStore,
+        provideNoopAnimations()
+      ]
+    });
 
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;

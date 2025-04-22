@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { CounterStore } from './counter.store';
 
 describe('CounterStore', () => {
-  let store: any;
+  let store: InstanceType<typeof CounterStore>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [CounterStore]
+    });
     store = TestBed.inject(CounterStore);
   });
 

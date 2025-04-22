@@ -1,0 +1,115 @@
+<div class="tracker">
+  <!-- Summary Cards Section
+       Displays key portfolio metrics in three cards:
+       1. Total portfolio value with last update time
+       2. Portfolio yield percentage and number of holdings
+       3. Annual dividend income with monthly breakdown -->
+  <section class="summary-cards">
+    <!-- Total Value Card: Shows the total portfolio value -->
+    <mat-card class="summary-card total-value">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon>account_balance</mat-icon>
+          <h3>Total Value</h3>
+        </div>
+        <div class="card-value">{{formatCurrency(portfolioSummary().totalValue)}}</div>
+        <div class="card-subtitle">Last updated: {{portfolioSummary().lastUpdated | date:'short'}}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Yield Card: Shows portfolio yield percentage -->
+    <mat-card class="summary-card yield">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon>trending_up</mat-icon>
+          <h3>Portfolio Yield</h3>
+        </div>
+        <div class="card-value">{{formatPercent(portfolioSummary().totalYield)}}</div>
+        <div class="card-subtitle">{{portfolioSummary().holdings}} Holdings</div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Income Card: Shows dividend income projections -->
+    <mat-card class="summary-card income">
+      <mat-card-content>
+        <div class="card-header">
+          <mat-icon>payments</mat-icon>
+          <h3>Annual Income</h3>
+        </div>
+        <div class="card-value">{{formatCurrency(portfolioSummary().annualIncome)}}</div>
+        <div class="card-subtitle">Monthly: {{formatCurrency(portfolioSummary().monthlyIncome)}}</div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Portfolio Holdings Section
+       Displays a detailed table of all portfolio holdings with:
+       - Stock symbols and company names
+       - Number of shares and current prices
+       - Position values and yields
+       - Income projections and price changes -->
+  <section class="holdings-section">
+    <mat-card class="holdings-card">
+      <mat-card-header>
+        <mat-card-title>Portfolio Holdings</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table [dataSource]="holdings()" class="holdings-table">
+          <!-- Symbol Column: Stock ticker symbol -->
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef>Symbol</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{holding.symbol}}</td>
+          </ng-container>
+
+          <!-- Name Column: Company name -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let holding">{{holding.name}}</td>
+          </ng-container>
+
+          <!-- Shares Column: Number of shares owned -->
+          <ng-container matColumnDef="shares">
+            <th mat-header-cell *matHeaderCellDef>Shares</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{holding.shares}}</td>
+          </ng-container>
+
+          <!-- Price Column: Current share price -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{formatCurrency(holding.price)}}</td>
+          </ng-container>
+
+          <!-- Value Column: Total position value -->
+          <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef>Value</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{formatCurrency(holding.value)}}</td>
+          </ng-container>
+
+          <!-- Yield Column: Current dividend yield -->
+          <ng-container matColumnDef="yield">
+            <th mat-header-cell *matHeaderCellDef>Yield</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{formatPercent(holding.yield)}}</td>
+          </ng-container>
+
+          <!-- Annual Income Column: Projected yearly dividend income -->
+          <ng-container matColumnDef="annualIncome">
+            <th mat-header-cell *matHeaderCellDef>Annual Income</th>
+            <td mat-cell *matCellDef="let holding" class="mono">{{formatCurrency(holding.annualIncome)}}</td>
+          </ng-container>
+
+          <!-- Change Column: Daily price change percentage with color coding -->
+          <ng-container matColumnDef="change">
+            <th mat-header-cell *matHeaderCellDef>Change</th>
+            <td mat-cell *matCellDef="let holding" class="mono" [class.positive]="holding.change > 0" [class.negative]="holding.change < 0">
+              {{formatPercent(holding.change)}}
+            </td>
+          </ng-container>
+
+          <!-- Table row templates -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>

@@ -1,0 +1,101 @@
+<div class="design-system">
+  <section class="section">
+    <h1>Design System</h1>
+    <p class="body-large">A comprehensive guide to our design language</p>
+  </section>
+
+  <!-- Colors -->
+  <section class="section">
+    <h2>Colors</h2>
+    
+    <h3>Brand Colors</h3>
+    <div class="color-grid">
+      <div class="color-item" *ngFor="let color of colors.brand">
+        <div class="color-swatch" [style.backgroundColor]="color.value"></div>
+        <div class="color-info">
+          <p class="color-name">{{color.name}}</p>
+          <p class="color-value">{{color.value}}</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Text Colors</h3>
+    <div class="color-grid">
+      <div class="color-item" *ngFor="let color of colors.text">
+        <div class="color-swatch" [style.backgroundColor]="color.value"></div>
+        <div class="color-info">
+          <p class="color-name">{{color.name}}</p>
+          <p class="color-value">{{color.value}}</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Background Colors</h3>
+    <div class="color-grid">
+      <div class="color-item" *ngFor="let color of colors.background">
+        <div class="color-swatch" [style.backgroundColor]="color.value"></div>
+        <div class="color-info">
+          <p class="color-name">{{color.name}}</p>
+          <p class="color-value">{{color.value}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typography -->
+  <section class="section">
+    <h2>Typography</h2>
+    <div class="typography-examples">
+      <div class="typography-item" *ngFor="let item of typographyExamples">
+        <div class="type-info">
+          <p class="type-name">{{item.name}}</p>
+        </div>
+        <p [class]="item.class">{{item.text}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spacing -->
+  <section class="section">
+    <h2>Spacing</h2>
+    <div class="spacing-examples">
+      <div class="spacing-item" *ngFor="let space of spacingValues">
+        <div class="spacing-box" [class]="space.class"></div>
+        <div class="spacing-info">
+          <p class="spacing-name">{{space.name}}</p>
+          <p class="spacing-value">{{space.value}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shadows -->
+  <section class="section">
+    <h2>Shadows</h2>
+    <div class="shadow-examples">
+      <div class="shadow-item" *ngFor="let shadow of shadowValues">
+        <div class="shadow-box" [class]="shadow.class"></div>
+        <p class="shadow-name">{{shadow.name}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Components -->
+  <section class="section">
+    <h2>Components</h2>
+    
+    <h3>Buttons</h3>
+    <div class="button-examples">
+      <button class="button-primary">Primary Button</button>
+      <button class="button-secondary">Secondary Button</button>
+    </div>
+
+    <h3>Cards</h3>
+    <div class="card-examples">
+      <div class="example-card">
+        <h3>Card Title</h3>
+        <p>This is an example card with hover effect and shadow.</p>
+      </div>
+    </div>
+  </section>
+</div>

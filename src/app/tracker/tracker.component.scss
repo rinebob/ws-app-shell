@@ -1,0 +1,185 @@
+@use '../../styles/financial-theme' as theme;
+
+.tracker {
+  background: theme.$background;
+  background-image: 
+    radial-gradient(circle at theme.rem(160) theme.rem(240), rgba(theme.$chart-tertiary, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at theme.rem(640) theme.rem(560), rgba(theme.$primary, 0.1) 0%, transparent 40%);
+  padding: theme.$spacing-lg;
+}
+
+// Summary Cards Section
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(theme.rem(300), 1fr));
+  gap: theme.$spacing-lg;
+  margin-bottom: theme.$spacing-xl;
+
+  .summary-card {
+    @include theme.card;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: theme.rem(1);
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(theme.$primary, 0.3), 
+        transparent
+      );
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: theme.$spacing-md;
+
+      mat-icon {
+        margin-right: theme.$spacing-sm;
+        font-size: theme.rem(24);
+        height: theme.rem(24);
+        width: theme.rem(24);
+      }
+
+      h3 {
+        @include theme.body-large;
+        margin: 0;
+        color: theme.$accent;
+        text-shadow: 0 0 theme.rem(10) rgba(theme.$accent, 0.15);
+      }
+    }
+
+    .card-value {
+      @include theme.heading-2;
+      margin-bottom: theme.$spacing-xs;
+      background: linear-gradient(90deg, theme.$text-primary, theme.$primary);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 theme.rem(15) rgba(theme.$primary, 0.3);
+    }
+
+    .card-subtitle {
+      @include theme.body-small;
+      color: theme.$text-secondary;
+    }
+
+    &.total-value {
+      mat-icon { 
+        color: theme.$primary;
+        filter: drop-shadow(0 0 8px rgba(theme.$primary, 0.5));
+      }
+    }
+
+    &.yield {
+      mat-icon { 
+        color: theme.$accent;
+        filter: drop-shadow(0 0 8px rgba(theme.$accent, 0.5));
+      }
+    }
+
+    &.income {
+      mat-icon { 
+        color: theme.$chart-tertiary;
+        filter: drop-shadow(0 0 8px rgba(theme.$chart-tertiary, 0.5));
+      }
+    }
+  }
+}
+
+// Holdings Section
+.holdings-section {
+  .holdings-card {
+    @include theme.card-raised;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(45deg, transparent 65%, rgba(theme.$primary, 0.1)),
+        linear-gradient(-45deg, transparent 75%, rgba(theme.$chart-tertiary, 0.1));
+      pointer-events: none;
+    }
+
+    mat-card-header {
+      margin-bottom: theme.$spacing-lg;
+
+      mat-card-title {
+        @include theme.heading-3;
+        margin: 0;
+        background: linear-gradient(90deg, theme.$text-primary, theme.$accent);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  }
+
+  .holdings-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th {
+      @include theme.body-small;
+      font-weight: theme.$font-weight-semibold;
+      border-bottom: theme.rem(1) solid rgba(theme.$accent, 0.3);
+      white-space: nowrap;
+      padding: theme.$spacing-md theme.$spacing-lg;
+      position: sticky;
+      top: 0;
+      background: rgba(theme.$surface, 0.95);
+      backdrop-filter: blur(theme.rem(10));
+      z-index: 1;
+      color: theme.$accent;
+      text-shadow: 0 0 theme.rem(10) rgba(theme.$accent, 0.15);
+    }
+
+    td {
+      @include theme.body-base;
+      color: theme.$text-primary;
+      padding: theme.$spacing-md theme.$spacing-lg;
+      border-bottom: theme.rem(1) solid rgba(theme.$primary, 0.1);
+      transition: background-color 0.2s ease;
+
+      &.mono {
+        @include theme.mono;
+        color: theme.$primary;
+      }
+
+      &.positive {
+        color: theme.$text-success;
+        text-shadow: 0 0 10px rgba(theme.$text-success, 0.3);
+      }
+
+      &.negative {
+        color: theme.$text-danger;
+        text-shadow: 0 0 10px rgba(theme.$text-danger, 0.3);
+      }
+    }
+
+    tr {
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        background: rgba(theme.$primary, 0.05);
+        transform: translateX(theme.rem(4));
+
+        td {
+          border-bottom-color: rgba(theme.$primary, 0.2);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,180 @@
+@use '../../styles/dividend-theme' as theme;
+
+.design-system {
+  padding: theme.$spacing-xl;
+  max-width: theme.$container-max-width;
+  margin: 0 auto;
+  background: theme.$background;
+
+  .section {
+    margin-bottom: theme.$spacing-3xl;
+
+    h1 {
+      @include theme.heading-1;
+      margin-bottom: theme.$spacing-md;
+    }
+
+    h2 {
+      @include theme.heading-2;
+      margin-bottom: theme.$spacing-lg;
+    }
+
+    h3 {
+      @include theme.heading-3;
+      margin: theme.$spacing-xl 0 theme.$spacing-md;
+    }
+  }
+
+  // Color Showcase
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: theme.$spacing-md;
+    margin-bottom: theme.$spacing-xl;
+  }
+
+  .color-item {
+    @include theme.card;
+    overflow: hidden;
+  }
+
+  .color-swatch {
+    height: 100px;
+    width: 100%;
+  }
+
+  .color-info {
+    padding: theme.$spacing-md;
+
+    .color-name {
+      @include theme.body-base;
+      font-weight: theme.$font-weight-medium;
+      margin-bottom: theme.$spacing-xs;
+    }
+
+    .color-value {
+      @include theme.body-small;
+    }
+  }
+
+  // Typography Showcase
+  .typography-examples {
+    .typography-item {
+      margin-bottom: theme.$spacing-xl;
+      padding: theme.$spacing-lg;
+      background: theme.$background-alt;
+      border-radius: theme.$radius-md;
+
+      .type-info {
+        @include theme.body-small;
+        margin-bottom: theme.$spacing-sm;
+        color: theme.$text-secondary;
+      }
+    }
+
+    .heading-1 { @include theme.heading-1; }
+    .heading-2 { @include theme.heading-2; }
+    .heading-3 { @include theme.heading-3; }
+    .body-large { @include theme.body-large; }
+    .body-base { @include theme.body-base; }
+    .body-small { @include theme.body-small; }
+  }
+
+  // Spacing Showcase
+  .spacing-examples {
+    display: flex;
+    flex-direction: column;
+    gap: theme.$spacing-md;
+  }
+
+  .spacing-item {
+    display: flex;
+    align-items: center;
+    gap: theme.$spacing-md;
+  }
+
+  .spacing-box {
+    background: theme.$primary;
+    height: 40px;
+
+    &.spacing-xs { width: theme.$spacing-xs; }
+    &.spacing-sm { width: theme.$spacing-sm; }
+    &.spacing-md { width: theme.$spacing-md; }
+    &.spacing-lg { width: theme.$spacing-lg; }
+    &.spacing-xl { width: theme.$spacing-xl; }
+    &.spacing-2xl { width: theme.$spacing-2xl; }
+    &.spacing-3xl { width: theme.$spacing-3xl; }
+  }
+
+  .spacing-info {
+    .spacing-name {
+      @include theme.body-base;
+      font-weight: theme.$font-weight-medium;
+    }
+    .spacing-value {
+      @include theme.body-small;
+    }
+  }
+
+  // Shadow Showcase
+  .shadow-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: theme.$spacing-xl;
+  }
+
+  .shadow-item {
+    text-align: center;
+  }
+
+  .shadow-box {
+    height: 100px;
+    background: theme.$surface;
+    margin-bottom: theme.$spacing-md;
+    border-radius: theme.$radius-md;
+
+    &.shadow-sm { box-shadow: theme.$shadow-sm; }
+    &.shadow-md { box-shadow: theme.$shadow-md; }
+    &.shadow-lg { box-shadow: theme.$shadow-lg; }
+    &.shadow-xl { box-shadow: theme.$shadow-xl; }
+  }
+
+  .shadow-name {
+    @include theme.body-small;
+  }
+
+  // Component Showcase
+  .button-examples {
+    display: flex;
+    gap: theme.$spacing-md;
+    margin-bottom: theme.$spacing-xl;
+
+    .button-primary {
+      @include theme.button-primary;
+    }
+
+    .button-secondary {
+      @include theme.button-secondary;
+    }
+  }
+
+  .card-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: theme.$spacing-xl;
+
+    .example-card {
+      @include theme.card;
+      padding: theme.$spacing-lg;
+
+      h3 {
+        @include theme.heading-3;
+        margin-bottom: theme.$spacing-md;
+      }
+
+      p {
+        @include theme.body-base;
+      }
+    }
+  }
+}

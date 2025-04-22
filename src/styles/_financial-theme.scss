@@ -1,0 +1,183 @@
+@use 'sass:math';
+
+@function rem($pixels) {
+  @return math.div($pixels, 16) * 1rem;
+}
+
+// Brand Colors
+$primary: #14b8a6;        // Teal primary
+$primary-dark: #0d9488;   // Darker teal for hover/active
+$accent: #22d3ee;         // Cyan accent
+$accent-dark: #06b6d4;    // Darker cyan for hover/active
+$warn: #ef4444;          // Red for warnings/errors
+$success: #10b981;       // Green for success states
+$info: #0ea5e9;          // Blue for info states
+
+// Background Colors
+$background: #0f1729;     // Dark blue background
+$background-alt: #1e293b; // Navy blue alt background
+$surface: #1e293b;       // Card/surface background
+$surface-raised: #334155; // Elevated surface
+
+// Text Colors
+$text-primary: #f8fafc;   // Off-white for primary text
+$text-secondary: #94a3b8; // Light gray for secondary text
+$text-disabled: #64748b;  // Darker gray for disabled text
+$text-on-primary: #0f172a; // Dark text on bright colors
+$text-success: #34d399;   // Green text for positive values
+$text-danger: #f87171;    // Red text for negative values
+
+// Data Visualization Colors
+$chart-primary: #22d3ee;   // Cyan for main chart lines
+$chart-secondary: #14b8a6; // Teal for secondary data
+$chart-tertiary: #0ea5e9;  // Blue for tertiary data
+$chart-grid: #334155;      // Grid lines color
+
+// Gradients
+$primary-gradient: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+$accent-gradient: linear-gradient(135deg, $accent 0%, $accent-dark 100%);
+$chart-gradient: linear-gradient(180deg, rgba($chart-primary, 0.2) 0%, rgba($chart-primary, 0) 100%);
+
+// Spacing
+$spacing-unit: rem(8);    // Base spacing unit (8px)
+$spacing-xs: $spacing-unit * 0.5;  // 4px
+$spacing-sm: $spacing-unit;        // 8px
+$spacing-md: $spacing-unit * 1.5;  // 12px
+$spacing-lg: $spacing-unit * 2;    // 16px
+$spacing-xl: $spacing-unit * 3;    // 24px
+$spacing-2xl: $spacing-unit * 4;   // 32px
+$spacing-3xl: $spacing-unit * 8;   // 64px
+
+// Container
+$container-max-width: rem(1280);  // Max width for main content
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+$shadow-glow: 0 0 15px rgba($primary, 0.3);
+
+// Border radius
+$radius-sm: rem(4);
+$radius-md: rem(6);
+$radius-lg: rem(8);
+$radius-xl: rem(12);
+
+// Typography
+$font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-size-xs: rem(12);
+$font-size-sm: rem(14);
+$font-size-base: rem(16);
+$font-size-lg: rem(18);
+$font-size-xl: rem(20);
+$font-size-2xl: rem(24);
+$font-size-3xl: rem(30);
+$font-size-4xl: rem(36);
+$font-size-5xl: rem(48);
+
+// Line heights
+$line-height-none: 1;
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// Font weights
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Mixins
+@mixin heading-1 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: -0.025em;
+}
+
+@mixin heading-2 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+  letter-spacing: -0.025em;
+}
+
+@mixin heading-3 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+}
+
+@mixin body-large {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+}
+
+@mixin body-base {
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
+}
+
+@mixin body-small {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+@mixin mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "liga" 0;
+}
+
+@mixin card {
+  background: $surface;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin card-raised {
+  background: $surface-raised;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+}
+
+@mixin button-primary {
+  background: $primary;
+  color: $text-on-primary;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-md;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background: $primary-dark;
+    box-shadow: $shadow-glow;
+  }
+}
+
+@mixin data-grid {
+  display: grid;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $surface;
+  border-radius: $radius-md;
+  
+  .grid-header {
+    font-weight: $font-weight-semibold;
+    color: $text-secondary;
+    border-bottom: 1px solid $chart-grid;
+    padding-bottom: $spacing-sm;
+  }
+  
+  .grid-cell {
+    &.positive {
+      color: $text-success;
+    }
+    &.negative {
+      color: $text-danger;
+    }
+  }
+}
