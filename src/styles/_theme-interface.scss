@@ -1,0 +1,219 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use './utils' as utils;
+
+// Required Variables
+// Brand Colors
+$primary: null !default;        // Primary brand color
+$primary-rgb: null !default;    // RGB values for primary
+$primary-dark: null !default;   // Darker shade of primary
+$primary-dark-rgb: null !default;
+$accent: null !default;         // Accent color
+$accent-rgb: null !default;
+$accent-dark: null !default;    // Darker shade of accent
+$accent-dark-rgb: null !default;
+$warn: null !default;           // Warning color
+$warn-rgb: null !default;
+$success: null !default;        // Success color
+$success-rgb: null !default;
+$info: null !default;           // Info color
+$info-rgb: null !default;
+
+// Background Colors
+$background: null !default;     // Main background
+$background-alt: null !default; // Alternative background
+$surface: null !default;        // Surface color
+$surface-raised: null !default; // Elevated surface color
+$card-bg: null !default;       // Card background
+$elevation-1: null !default;    // First level elevation
+
+// Text Colors
+$text-primary: null !default;   // Primary text color
+$text-secondary: null !default; // Secondary text color
+$text-disabled: null !default;  // Disabled text color
+$text-on-primary: null !default; // Text on primary color
+$text-success: null !default;   // Success text color
+$text-danger: null !default;    // Danger text color
+
+// Interactive States
+$primary-hover: null !default;
+$primary-active: null !default;
+
+// Status Colors
+$success-bg: null !default;
+$warn-bg: null !default;
+$accent-bg: null !default;
+
+// Dividers
+$divider-light: null !default;
+$divider-dark: null !default;
+
+// Borders
+$radius-sm: utils.rem(4);
+$radius-md: utils.rem(8);
+$radius-lg: utils.rem(12);
+$radius-xl: utils.rem(16);
+
+// Shadows
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: all 0.15s ease;
+$transition-base: all 0.3s ease;
+$transition-slow: all 0.45s ease;
+
+// Typography
+$font-family-base: 'Roboto', sans-serif;
+$font-family-mono: 'Roboto Mono', monospace;
+$font-size-xs: utils.rem(12);
+$font-size-sm: utils.rem(14);
+$font-size-base: utils.rem(16);
+$font-size-lg: utils.rem(18);
+$font-size-xl: utils.rem(20);
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: utils.rem(4);
+$spacing-sm: utils.rem(8);
+$spacing-md: utils.rem(16);
+$spacing-lg: utils.rem(24);
+$spacing-xl: utils.rem(32);
+
+// Z-index
+$z-index: (
+  header: 100,
+  modal: 1000,
+  tooltip: 1500,
+  dropdown: 2000
+);
+
+// Layout
+$container-max-width: null !default;
+$header-height: utils.rem(64);
+$sidenav-width: utils.rem(250);
+
+// Breakpoints
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+// Z-index
+$z-index: (
+  modal: 1000,
+  overlay: 900,
+  drawer: 800,
+  header: 700,
+  dropdown: 600
+) !default;
+
+// Required Mixins
+@mixin heading-1 {
+  font-size: utils.rem(32);
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+}
+
+@mixin heading-2 {
+  font-size: utils.rem(24);
+  font-weight: $font-weight-bold;
+  line-height: 1.3;
+}
+
+@mixin heading-3 {
+  font-size: utils.rem(20);
+  font-weight: $font-weight-medium;
+  line-height: 1.4;
+}
+
+@mixin body-large {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+}
+
+@mixin body-base {
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+}
+
+@mixin body-small {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-regular;
+  line-height: 1.5;
+}
+
+@mixin mono {
+  font-family: $font-family-mono;
+  font-size: $font-size-base;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin card {
+  background: var(--surface);
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  padding: $spacing-md;
+}
+
+@mixin hover-effect {
+  transition: $transition-base;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: utils.rem(8);
+    height: utils.rem(8);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--divider);
+    border-radius: $radius-sm;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+}

@@ -1,0 +1,295 @@
+// Theme Selector
+@use 'sass:color';
+@use 'sass:math';
+@use './theme-interface' as theme;
+@use './utils' as utils;
+
+// Re-export theme interface variables
+@forward './theme-interface';
+
+// Theme Base Styles
+:root {
+  background: var(--background);
+  color: var(--text-primary);
+  transition: theme.$transition-base;
+}
+
+// CSS Custom Properties for themes
+// Default theme
+.theme-default {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --accent: #10b981;
+  --accent-dark: #059669;
+  --background: #f8fafc;
+  --surface: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --divider: #e2e8f0;
+  --primary-hover: rgba(37, 99, 235, 0.1);
+  --primary-active: rgba(37, 99, 235, 0.2);
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.1);
+  --warn: #ef4444;
+  --warn-bg: rgba(239, 68, 68, 0.1);
+  --accent-bg: rgba(16, 185, 129, 0.1);
+}
+
+
+
+// Dark mode overrides
+.dark-theme {
+  --background: #0f172a;
+  --surface: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --divider: #334155;
+  --primary-hover: rgba(99, 102, 241, 0.2);
+  --primary-active: rgba(99, 102, 241, 0.3);
+}
+
+// Material Component Styles
+// Toolbar
+.mat-toolbar {
+  background: var(--background) !important;
+  color: var(--text-primary) !important;
+  height: theme.$header-height !important;
+  box-shadow: theme.$shadow-md;
+}
+
+// Sidenav
+.mat-sidenav {
+  width: theme.$sidenav-width;
+  border-right: none;
+  background: var(--surface);
+  box-shadow: theme.$shadow-md;
+
+  .mat-list-item {
+    margin: theme.$spacing-xs;
+    border-radius: theme.$radius-sm;
+    transition: theme.$transition-base;
+    font-weight: theme.$font-weight-medium;
+    color: var(--text-primary);
+
+    &:hover {
+      background: var(--primary-hover);
+    }
+
+    &.active {
+      background: var(--primary-active);
+      color: var(--primary);
+    }
+
+    .material-icons {
+      margin-right: theme.$spacing-sm;
+    }
+  }
+}
+
+// Form Fields
+.mat-mdc-form-field {
+  &.mat-mdc-form-field-type-mat-select {
+    .mat-mdc-text-field-wrapper {
+      background: var(--surface);
+      border-radius: theme.$radius-sm;
+    }
+
+    .mat-mdc-form-field-flex {
+      min-height: unset;
+    }
+  }
+}
+
+// Select Panel
+.mat-mdc-select-panel {
+  background: var(--surface) !important;
+  border-radius: theme.$radius-sm !important;
+  border: 1px solid var(--divider) !important;
+
+  .mat-mdc-option {
+    color: var(--text-primary);
+
+    &:hover:not(.mat-mdc-option-disabled) {
+      background: var(--primary-hover) !important;
+    }
+
+    &.mat-mdc-option-active {
+      background: var(--primary-active) !important;
+    }
+
+    .mdc-list-item__primary-text {
+      color: inherit;
+    }
+  }
+}
+
+// Cards
+.mat-card {
+  background: var(--surface);
+  border-radius: theme.$radius-md;
+  box-shadow: theme.$shadow-md;
+  margin: theme.$spacing-md;
+  padding: 0;
+  overflow: hidden;
+  color: var(--text-primary);
+
+  .mat-card-header {
+    background: var(--primary);
+    color: var(--text-primary);
+    padding: theme.$spacing-md theme.$spacing-lg;
+    margin: 0;
+
+    .mat-card-title {
+      color: var(--text-primary);
+      margin: 0;
+      font-size: theme.$font-size-xl;
+    }
+
+    .mat-card-subtitle {
+      color: var(--text-secondary);
+      margin: theme.$spacing-xs 0 0;
+    }
+  }
+
+  .mat-card-content {
+    padding: theme.$spacing-lg;
+  }
+
+  .mat-card-actions {
+    margin: 0;
+    padding: theme.$spacing-md;
+    display: flex;
+    gap: theme.$spacing-sm;
+    justify-content: center;
+    border-top: 1px solid var(--divider);
+    background: var(--surface);
+  }
+}
+
+// Buttons
+.mat-raised-button {
+  display: inline-flex;
+  align-items: center;
+  gap: theme.$spacing-xs;
+  min-width: utils.rem(100);
+  padding: theme.$spacing-sm theme.$spacing-md;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+
+  &:hover {
+    box-shadow: theme.$shadow-md;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  .material-icons {
+    font-size: utils.rem(18);
+  }
+
+  &.mat-primary {
+    background: var(--primary);
+    color: var(--text-primary);
+  }
+
+  &.mat-warn {
+    background: var(--warn);
+    color: var(--text-primary);
+  }
+}
+
+.mat-button {
+  display: inline-flex;
+  align-items: center;
+  gap: theme.$spacing-xs;
+  min-width: utils.rem(100);
+  padding: theme.$spacing-sm theme.$spacing-md;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+  border: utils.rem(1) solid var(--divider);
+  background: var(--surface);
+  color: var(--text-primary);
+
+  &:hover {
+    background: var(--primary-hover);
+    box-shadow: theme.$shadow-sm;
+  }
+
+  &:active {
+    background: var(--primary-active);
+  }
+
+  .material-icons {
+    font-size: utils.rem(18);
+  }
+}
+
+// Value indicators
+.value-display {
+  display: inline-block;
+  padding: theme.$spacing-xs theme.$spacing-sm;
+  border-radius: theme.$radius-sm;
+  font-weight: theme.$font-weight-medium;
+  transition: theme.$transition-base;
+  font-size: theme.$font-size-sm;
+
+  &.positive {
+    color: var(--success);
+    background: var(--success-bg);
+  }
+
+  &.negative {
+    color: var(--warn);
+    background: var(--warn-bg);
+  }
+
+  &.accent {
+    color: var(--accent);
+    background: var(--accent-bg);
+  }
+}
+
+
+@mixin mono {
+  font-family: theme.$font-family-mono;
+  font-size: theme.$font-size-base;
+}
+
+@mixin card {
+  background: var(--surface);
+  border-radius: theme.$radius-md;
+  box-shadow: theme.$shadow-md;
+  padding: theme.$spacing-md;
+}
+
+@mixin hover-effect {
+  transition: theme.$transition-base;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: theme.$shadow-lg;
+  }
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: utils.rem(8);
+    height: utils.rem(8);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--divider);
+    border-radius: theme.$radius-sm;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+}
