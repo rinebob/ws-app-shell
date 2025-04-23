@@ -1,20 +1,27 @@
+@use 'sass:map';
+@use '../styles/theme-interface' as theme;
+@use '../styles/utils' as utils;
+
 mat-sidenav-container {
   height: auto;
+  background: var(--background);
 }
 
 mat-sidenav {
+  width: theme.$sidenav-width;
+  
   .mat-toolbar {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--divider);
   }
 }
 
 mat-sidenav-content {
-  background: #fff;
+  background: var(--background);
 
   .mat-toolbar {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: map.get(theme.$z-index, header);
   }
 }
 
@@ -23,7 +30,7 @@ mat-sidenav-content {
 }
 
 .content-container {
-  max-width: 1200px;
+  max-width: utils.rem(1200);
   margin: 0 auto;
   box-sizing: border-box;
 }

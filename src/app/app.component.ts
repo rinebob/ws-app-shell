@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from './core/services/theme.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
@@ -25,5 +26,11 @@ import { HeaderComponent } from './header/header.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  private themeService = inject(ThemeService);
+  
+  get isDarkTheme(): boolean {
+    return this.themeService.isDarkMode();
+  }
+  
   title = 'ws-app-shell';
 }

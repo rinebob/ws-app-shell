@@ -1,13 +1,16 @@
-@use '../../styles/dividend-theme' as theme;
+@use '../../styles/theme-interface' as theme;
+@use '../../styles/utils' as utils;
 
 .design-system {
-  padding: theme.$spacing-xl;
+  padding: theme.$spacing-lg;
   max-width: theme.$container-max-width;
   margin: 0 auto;
-  background: theme.$background;
+  width: 100%;
+  background: var(--background);
+  overflow-x: hidden;
 
   .section {
-    margin-bottom: theme.$spacing-3xl;
+    margin-bottom: theme.$spacing-xl;
 
     h1 {
       @include theme.heading-1;
@@ -28,9 +31,10 @@
   // Color Showcase
   .color-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(utils.rem(200), 1fr));
     gap: theme.$spacing-md;
     margin-bottom: theme.$spacing-xl;
+    width: 100%;
   }
 
   .color-item {
@@ -62,13 +66,13 @@
     .typography-item {
       margin-bottom: theme.$spacing-xl;
       padding: theme.$spacing-lg;
-      background: theme.$background-alt;
+      background: var(--background-alt);
       border-radius: theme.$radius-md;
 
       .type-info {
         @include theme.body-small;
         margin-bottom: theme.$spacing-sm;
-        color: theme.$text-secondary;
+        color: var(--text-secondary);
       }
     }
 
@@ -94,7 +98,7 @@
   }
 
   .spacing-box {
-    background: theme.$primary;
+    background: var(--primary);
     height: 40px;
 
     &.spacing-xs { width: theme.$spacing-xs; }
@@ -102,8 +106,6 @@
     &.spacing-md { width: theme.$spacing-md; }
     &.spacing-lg { width: theme.$spacing-lg; }
     &.spacing-xl { width: theme.$spacing-xl; }
-    &.spacing-2xl { width: theme.$spacing-2xl; }
-    &.spacing-3xl { width: theme.$spacing-3xl; }
   }
 
   .spacing-info {
@@ -129,7 +131,7 @@
 
   .shadow-box {
     height: 100px;
-    background: theme.$surface;
+    background: var(--surface);
     margin-bottom: theme.$spacing-md;
     border-radius: theme.$radius-md;
 
@@ -150,11 +152,41 @@
     margin-bottom: theme.$spacing-xl;
 
     .button-primary {
-      @include theme.button-primary;
+      background: var(--primary);
+      color: var(--text-on-primary);
+      border: none;
+      border-radius: theme.$radius-md;
+      padding: theme.$spacing-sm theme.$spacing-md;
+      font-weight: theme.$font-weight-medium;
+      transition: theme.$transition-base;
+
+      &:hover {
+        background: var(--primary-dark);
+        transform: translateY(utils.rem(-1));
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
 
     .button-secondary {
-      @include theme.button-secondary;
+      background: transparent;
+      color: var(--primary);
+      border: utils.rem(1) solid var(--primary);
+      border-radius: theme.$radius-md;
+      padding: theme.$spacing-sm theme.$spacing-md;
+      font-weight: theme.$font-weight-medium;
+      transition: theme.$transition-base;
+
+      &:hover {
+        background: rgba(var(--primary-rgb), 0.1);
+        transform: translateY(utils.rem(-1));
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
 

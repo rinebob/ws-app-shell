@@ -1,9 +1,47 @@
-<header class="app-header">
-  <button mat-icon-button (click)="toggleSidenav.emit()" class="menu-toggle" aria-label="Toggle navigation">
-    <span class="material-icons">menu</span>
+<mat-toolbar class="app-header">
+  <button 
+    mat-icon-button 
+    (click)="menuClick.emit()"
+    matTooltip="Toggle navigation"
+  >
+    <mat-icon>menu</mat-icon>
   </button>
-  <div class="header-brand">
-    <img src="assets/angular.svg" alt="Angular Logo" class="brand-logo">
-    <h1>Windsurf App Shell</h1>
+  <span class="app-title">Windsurf App Shell</span>
+  <span class="spacer"></span>
+  
+  <div class="header-actions">
+    <!-- Theme Style Selector -->
+    <button 
+      mat-button 
+      class="theme-button" 
+      [matMenuTriggerFor]="themeMenu"
+    >
+      <mat-icon>palette</mat-icon>
+      <span>{{ themeService.getCurrentThemeStyle() }}</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #themeMenu="matMenu" class="theme-menu" panelClass="theme-menu-panel">
+      @for (style of themeStyles; track style) {
+        <button 
+          mat-menu-item 
+          (click)="themeService.setThemeStyle(style)"
+          [class.active]="style === themeService.getCurrentThemeStyle()"
+        >
+          <mat-icon>{{ style === themeService.getCurrentThemeStyle() ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+          <span>{{ style }}</span>
+        </button>
+      }
+    </mat-menu>
+
+    <!-- Color Mode Toggle -->
+    <button 
+      mat-icon-button 
+      class="mode-toggle"
+      [matTooltip]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      (click)="themeService.toggleColorMode()"
+    >
+      <mat-icon>{{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
   </div>
-</header>
+</mat-toolbar>

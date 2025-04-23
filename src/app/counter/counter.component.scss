@@ -1,34 +1,35 @@
-@use '../../styles/theme' as theme;
+@use '../../styles/theme-interface' as theme;
+@use '../../styles/utils' as utils;
 
 :host {
   display: block;
-  max-width: 400px;
+  width: 100%;
+  padding: theme.$spacing-lg;
+  max-width: theme.$container-max-width;
+  margin: 0 auto;
 }
 
 .counter-card {
-  background: white;
-  border-radius: theme.$radius-md;
-  box-shadow: theme.$shadow-md;
-  padding: theme.$spacing-md;
+  @include theme.card;
   width: 100%;
-  max-width: theme.rem(400);
+  max-width: utils.rem(400);
   margin: theme.$spacing-lg auto;
 
   mat-card-header {
-    background: theme.$primary-gradient;
+    background: var(--primary-gradient);
     margin: 0;
     padding: theme.$spacing-md theme.$spacing-lg;
     border-radius: theme.$radius-md theme.$radius-md 0 0;
-    color: white;
+    color: var(--text-on-primary);
 
     mat-card-title {
       font-size: theme.$font-size-xl;
       margin: 0;
-      color: white;
+      color: var(--text-on-primary);
     }
 
     mat-card-subtitle {
-      color: rgba(white, 0.9);
+      color: var(--text-on-primary);
       margin: theme.$spacing-xs 0 0;
     }
   }
@@ -43,20 +44,20 @@
 
       span {
         display: inline-block;
-        min-width: theme.rem(60);
+        min-width: utils.rem(60);
         padding: theme.$spacing-xs theme.$spacing-sm;
         border-radius: theme.$radius-sm;
         font-weight: theme.$font-weight-medium;
         transition: theme.$transition-base;
 
         &.positive {
-          color: theme.$success;
-          background: rgba(theme.$success, 0.1);
+          color: var(--success);
+          background: var(--success-bg);
         }
 
         &.negative {
-          color: theme.$warn;
-          background: rgba(theme.$warn, 0.1);
+          color: var(--warn);
+          background: var(--warn-bg);
         }
       }
     }
@@ -70,14 +71,14 @@
     margin: 0;
 
     button {
-      min-width: theme.rem(120);
+      min-width: utils.rem(120);
       display: inline-flex;
       align-items: center;
       gap: theme.$spacing-xs;
       transition: theme.$transition-base;
 
       &:hover {
-        transform: translateY(theme.rem(-1));
+        transform: translateY(utils.rem(-1));
       }
 
       &:active {
@@ -85,7 +86,7 @@
       }
 
       .material-icons {
-        font-size: theme.rem(18);
+        font-size: utils.rem(18);
       }
     }
   }
