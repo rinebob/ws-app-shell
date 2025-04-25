@@ -17,18 +17,20 @@
       [matMenuTriggerFor]="themeMenu"
     >
       <mat-icon>palette</mat-icon>
-      <span>{{ themeService.getCurrentThemeStyle() }}</span>
+      <span>{{ currentThemeStyle() }}</span>
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
 
-    <mat-menu #themeMenu="matMenu" class="theme-menu" panelClass="theme-menu-panel">
+    <mat-menu #themeMenu="matMenu" panelClass="theme-menu-panel">
       @for (style of themeStyles; track style) {
         <button 
           mat-menu-item 
-          (click)="themeService.setThemeStyle(style)"
-          [class.active]="style === themeService.getCurrentThemeStyle()"
+          (click)="onThemeStyleChange(style)"
+          [class.active]="style === currentThemeStyle()"
+          [attr.data-style]="style"
+          [attr.data-current]="currentThemeStyle()"
         >
-          <mat-icon>{{ style === themeService.getCurrentThemeStyle() ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
+          <mat-icon>{{ style === currentThemeStyle() ? 'radio_button_checked' : 'radio_button_unchecked' }}</mat-icon>
           <span>{{ style }}</span>
         </button>
       }

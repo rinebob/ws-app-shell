@@ -45,7 +45,7 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const links = compiled.querySelectorAll('mat-nav-list a');
     expect(links.length).toBe(4);
-    expect(links[0].textContent).toContain('Home');
+    expect(links[0].textContent).toContain('Dashboard');
     expect(links[1].textContent).toContain('Counter');
     expect(links[2].textContent).toContain('Design System');
     expect(links[3].textContent).toContain('Dividend Tracker');

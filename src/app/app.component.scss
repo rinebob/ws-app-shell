@@ -2,8 +2,16 @@
 @use '../styles/theme-interface' as theme;
 @use '../styles/utils' as utils;
 
+:host, :host > div {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 mat-sidenav-container {
-  height: auto;
+  height: 100vh;
   background: var(--background);
 }
 
@@ -13,15 +21,38 @@ mat-sidenav {
   .mat-toolbar {
     border-bottom: 1px solid var(--divider);
   }
+
+  .mat-mdc-list-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mat-mdc-list-item_primary-text {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: stretch;
+    }
+    
+    .mat-icon {
+      margin-right: utils.rem(12);
+      font-size: utils.rem(24);
+    }
+  }
 }
 
 mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: auto;
   background: var(--background);
 
   .mat-toolbar {
     position: sticky;
     top: 0;
-    z-index: map.get(theme.$z-index, header);
+    z-index: map.get(theme.$z-index, 'header');
   }
 }
 
@@ -30,7 +61,20 @@ mat-sidenav-content {
 }
 
 .content-container {
+  flex: 1 1 auto;
+  height: auto;
+  min-height: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-inner {
+  width: 100%;
   max-width: utils.rem(1200);
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
 }

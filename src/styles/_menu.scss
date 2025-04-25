@@ -1,79 +1,27 @@
 @use 'utils' as utils;
+@use '@angular/material' as mat;
+@use 'theme-interface' as theme;
 
-.theme-menu-panel {
-  margin-top: utils.rem(8) !important;
-  
-  .mat-mdc-menu-content {
-    padding: utils.rem(8) !important;
-    min-width: utils.rem(240) !important;
-    background: var(--surface) !important;
-    border-radius: utils.rem(12) !important;
-    box-shadow: 0 utils.rem(8) utils.rem(16) rgba(0, 0, 0, 0.12),
-              0 utils.rem(4) utils.rem(8) rgba(0, 0, 0, 0.08) !important;
-    border: utils.rem(1) solid rgba(var(--text-primary-rgb), 0.08) !important;
-    background: linear-gradient(
-      to bottom right,
-      rgba(var(--surface-rgb), 0.95),
-      rgba(var(--surface-rgb), 0.98)
-    ) !important;
-    backdrop-filter: blur(utils.rem(8)) !important;
+@include mat.menu-overrides((
+  container-color: rgba(var(--surface-rgb), 0.98),
+  container-shape: utils.rem(12),
+  container-elevation-shadow: 0 utils.rem(8) utils.rem(24) rgba(0, 0, 0, 0.2),
+  item-spacing: utils.rem(4),
+  item-label-text-color: var(--text-primary),
+  item-icon-color: var(--text-primary),
+  item-hover-state-layer-color: rgba(var(--primary-rgb), 0.15),
+  item-focus-state-layer-color: rgba(var(--primary-rgb), 0.2),
+  item-label-text-font: theme.$font-family-base,
+  item-label-text-size: utils.rem(14),
+  item-label-text-weight: 500,
+  item-label-text-line-height: utils.rem(20)
+));
 
-    .mat-mdc-menu-item {
-      display: flex !important;
-      align-items: center !important;
-      gap: utils.rem(12) !important;
-      margin: utils.rem(4) !important;
-      padding: utils.rem(8) utils.rem(12) !important;
-      min-height: utils.rem(44) !important;
-      line-height: utils.rem(44) !important;
-      border-radius: utils.rem(8) !important;
-      color: var(--text-primary) !important;
-      font-weight: 500 !important;
-      transition: all 0.2s ease !important;
-      position: relative !important;
-      overflow: hidden !important;
+.mat-mdc-menu-item.active {
+  background: var(--primary) !important;
+  color: white !important;
 
-      &::before {
-        content: '' !important;
-        position: absolute !important;
-        inset: 0 !important;
-        background: linear-gradient(
-          to right,
-          rgba(var(--primary-rgb), 0.05),
-          rgba(var(--primary-rgb), 0.1)
-        ) !important;
-        opacity: 0 !important;
-        transition: opacity 0.2s ease !important;
-      }
-
-      &.active {
-        background: var(--primary) !important;
-        color: white !important;
-        box-shadow: 0 utils.rem(2) utils.rem(4) rgba(0, 0, 0, 0.1) !important;
-
-        mat-icon {
-          color: white !important;
-        }
-      }
-
-      &:hover:not(.active) {
-        &::before {
-          opacity: 1 !important;
-        }
-      }
-
-      mat-icon {
-        margin: 0 !important;
-        font-size: utils.rem(20) !important;
-        width: utils.rem(20) !important;
-        height: utils.rem(20) !important;
-        color: var(--text-primary) !important;
-        transition: transform 0.2s ease !important;
-      }
-
-      &:hover mat-icon {
-        transform: scale(1.1) !important;
-      }
-    }
+  .mat-icon {
+    color: white !important;
   }
 }

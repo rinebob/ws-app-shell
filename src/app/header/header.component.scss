@@ -1,5 +1,8 @@
 @use '../../styles/theme-interface' as theme;
 @use '../../styles/utils' as utils;
+@use '@angular/material' as mat;
+
+
 
 .app-header {
   display: flex;
@@ -14,196 +17,111 @@
     flex: 1 1 auto;
   }
 
-  .header-brand {
-    :host {
-      display: block;
+  .mat-toolbar {
+    padding: 0 theme.$spacing-md;
+
+    .mat-icon-button {
+      width: utils.rem(42);
+      flex-shrink: 0;
     }
 
-    .mat-toolbar {
-      padding: 0 theme.$spacing-md;
-
-      .mat-icon-button {
-        width: utils.rem(42);
-        flex-shrink: 0;
-      }
-
-      .app-title {
-        font-size: theme.$font-size-xl;
-        font-weight: theme.$font-weight-medium;
-        margin-left: theme.$spacing-md;
-      }
+    .app-title {
+      font-size: theme.$font-size-xl;
+      font-weight: theme.$font-weight-medium;
+      margin-left: theme.$spacing-md;
     }
+  }
 
-    .spacer {
-      flex: 1 1 auto;
-    }
+  .spacer {
+    flex: 1 1 auto;
+  }
 
-    .header-actions {
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: theme.$spacing-sm;
+
+    .theme-button {
       display: flex;
       align-items: center;
       gap: theme.$spacing-sm;
+      padding: theme.$spacing-xs theme.$spacing-sm;
+      border-radius: utils.rem(999);
+      background-color: rgba(var(--primary-rgb), 0.1);
+      color: var(--primary);
+      min-height: utils.rem(36);
+      transition: theme.$transition-base;
 
-      .theme-button {
-        display: flex;
-        align-items: center;
-        gap: theme.$spacing-sm;
-        padding: theme.$spacing-xs theme.$spacing-sm;
-        border-radius: utils.rem(999);
-        background: rgba(var(--primary-rgb), 0.1);
-        color: var(--primary);
-        min-height: utils.rem(36);
-        transition: theme.$transition-base;
-
-        &:hover {
-          background: rgba(var(--primary-rgb), 0.15);
-        }
-
-        mat-icon {
-          margin: 0;
-          font-size: utils.rem(20);
-          width: utils.rem(20);
-          height: utils.rem(20);
-        }
+      &:hover {
+        background: rgba(var(--primary-rgb), 0.15);
       }
 
-      .mode-toggle {
-        color: var(--text-primary);
-        transition: theme.$transition-base;
-
-        &:hover {
-          color: var(--primary);
-        }
-
-        mat-icon {
-          font-size: utils.rem(20);
-          width: utils.rem(20);
-          height: utils.rem(20);
-        }
+      mat-icon {
+        margin: 0;
+        font-size: utils.rem(20);
+        width: utils.rem(20);
+        height: utils.rem(20);
       }
     }
 
-    ::ng-deep {
-      .theme-menu-panel {
-        margin-top: utils.rem(8) !important;
-        
-        .mat-mdc-menu-content {
-          padding: utils.rem(8) !important;
-          min-width: utils.rem(240) !important;
-          background: var(--surface) !important;
-          border-radius: utils.rem(12) !important;
-          box-shadow: 0 utils.rem(8) utils.rem(16) rgba(0, 0, 0, 0.12),
-                    0 utils.rem(4) utils.rem(8) rgba(0, 0, 0, 0.08) !important;
-          border: utils.rem(1) solid rgba(var(--text-primary-rgb), 0.08) !important;
-          background: linear-gradient(
-            to bottom right,
-            rgba(var(--surface-rgb), 0.95),
-            rgba(var(--surface-rgb), 0.98)
-          ) !important;
-          backdrop-filter: blur(utils.rem(8)) !important;
-        }
+    .mode-toggle {
+      color: var(--text-primary);
+      transition: theme.$transition-base;
 
-        .mat-mdc-menu-item {
-          display: flex !important;
-          align-items: center !important;
-          gap: utils.rem(12) !important;
-          margin: utils.rem(4) !important;
-          padding: utils.rem(8) utils.rem(12) !important;
-          min-height: utils.rem(44) !important;
-          line-height: utils.rem(44) !important;
-          border-radius: utils.rem(8) !important;
-          color: var(--text-primary) !important;
-          font-weight: 500 !important;
-          transition: all 0.2s ease !important;
-          position: relative !important;
-          overflow: hidden !important;
+      &:hover {
+        color: var(--primary);
+      }
 
-          &::before {
-            content: '' !important;
-            position: absolute !important;
-            inset: 0 !important;
-            background: linear-gradient(
-              to right,
-              rgba(var(--primary-rgb), 0.05),
-              rgba(var(--primary-rgb), 0.1)
-            ) !important;
-            opacity: 0 !important;
-            transition: opacity 0.2s ease !important;
-          }
-
-          &.active {
-            background: var(--primary) !important;
-            color: white !important;
-            box-shadow: 0 utils.rem(2) utils.rem(4) rgba(0, 0, 0, 0.1) !important;
-
-            mat-icon {
-              color: white !important;
-            }
-          }
-
-          &:hover:not(.active) {
-            &::before {
-              opacity: 1 !important;
-            }
-          }
-
-          mat-icon {
-            margin: 0 !important;
-            font-size: utils.rem(20) !important;
-            width: utils.rem(20) !important;
-            height: utils.rem(20) !important;
-            color: var(--text-primary) !important;
-            transition: transform 0.2s ease !important;
-          }
-
-          &:hover mat-icon {
-            transform: scale(1.1) !important;
-          }
-        }
+      mat-icon {
+        font-size: utils.rem(20);
+        width: utils.rem(20);
+        height: utils.rem(20);
       }
     }
   }
 
-  .theme-select {
-    margin-right: theme.$spacing-md;
+}
 
-    .theme-button {
-      display: flex !important;
-      align-items: center !important;
-      gap: utils.rem(8) !important;
-      padding: utils.rem(6) utils.rem(12) !important;
-      border-radius: utils.rem(24) !important;
-      background: var(--primary) !important;
-      color: white !important;
-      font-weight: 500 !important;
-      transition: all 0.2s ease !important;
+
+
+.theme-select {
+  margin-right: theme.$spacing-md;
+
+  .theme-button {
+    display: flex !important;
+    align-items: center !important;
+    gap: utils.rem(8) !important;
+    padding: utils.rem(6) utils.rem(12) !important;
+    border-radius: utils.rem(24) !important;
+    background: var(--primary) !important;
+    color: white !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 utils.rem(2) utils.rem(4) rgba(0, 0, 0, 0.1) !important;
+
+    &:hover {
+      background: var(--primary-dark) !important;
+      transform: translateY(utils.rem(-1)) !important;
+      box-shadow: 0 utils.rem(4) utils.rem(8) rgba(0, 0, 0, 0.12) !important;
+    }
+
+    &:active {
+      transform: translateY(0) !important;
       box-shadow: 0 utils.rem(2) utils.rem(4) rgba(0, 0, 0, 0.1) !important;
+    }
 
-      &:hover {
-        background: var(--primary-dark) !important;
-        transform: translateY(utils.rem(-1)) !important;
-        box-shadow: 0 utils.rem(4) utils.rem(8) rgba(0, 0, 0, 0.15) !important;
-      }
+    mat-icon:last-child {
+      margin-left: utils.rem(4) !important;
+      transition: transform 0.2s ease !important;
+      height: utils.rem(20);
+    }
 
-      &:active {
-        transform: translateY(0) !important;
-        box-shadow: 0 utils.rem(2) utils.rem(4) rgba(0, 0, 0, 0.1) !important;
-      }
+    &[aria-expanded=true] mat-icon:last-child {
+      transform: rotate(180deg) !important;
+    }
 
-      mat-icon:last-child {
-        margin-left: utils.rem(4) !important;
-        transition: transform 0.2s ease !important;
-        height: utils.rem(20);
-
-        &:last-child {
-          font-size: utils.rem(18);
-          margin-left: utils.rem(4);
-          transition: transform 0.2s ease;
-        }
-      }
-
-      &:hover mat-icon:last-child {
-        transform: translateY(utils.rem(1));
-      }
+    &:hover mat-icon:last-child {
+      transform: translateY(utils.rem(1));
     }
   }
 
@@ -211,7 +129,6 @@
     color: var(--text-primary);
     opacity: 0.9;
     transition: theme.$transition-base;
-    color: var(--text-primary);
 
     .material-icons {
       color: inherit;

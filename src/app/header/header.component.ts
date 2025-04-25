@@ -34,9 +34,8 @@ export class HeaderComponent {
     return this.themeService.isDarkMode();
   }
 
-  get currentThemeStyle(): ThemeStyle {
-    return this.themeService.getCurrentThemeStyle();
-  }
+  // Signal for the current theme style
+  readonly currentThemeStyle = this.themeService.themeStyleSignal;
 
   onThemeStyleChange(style: ThemeStyle): void {
     this.themeService.setThemeStyle(style);

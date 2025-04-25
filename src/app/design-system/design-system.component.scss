@@ -1,11 +1,10 @@
-@use '../../styles/theme-interface' as theme;
 @use '../../styles/utils' as utils;
+@use '../../styles/theme-interface' as theme;
 
 .design-system {
   padding: theme.$spacing-lg;
   max-width: theme.$container-max-width;
   margin: 0 auto;
-  width: 100%;
   background: var(--background);
   overflow-x: hidden;
 
@@ -31,15 +30,26 @@
   // Color Showcase
   .color-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(utils.rem(200), 1fr));
-    gap: theme.$spacing-md;
+    grid-template-columns: repeat(auto-fill, minmax(0, theme.$card-max-width));
+    gap: theme.$spacing-lg;
+    // justify-content: center;
     margin-bottom: theme.$spacing-xl;
     width: 100%;
+    max-width: theme.$container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
   }
 
   .color-item {
+    max-width: theme.$card-max-width;
     @include theme.card;
     overflow: hidden;
+    box-sizing: border-box;
+
+    @media (max-width: 789px) {
+      max-width: calc(100vw - theme.$sidenav-width - theme.$spacing-lg * 2);
+    }
   }
 
   .color-swatch {
@@ -68,7 +78,14 @@
       padding: theme.$spacing-lg;
       background: var(--background-alt);
       border-radius: theme.$radius-md;
+      max-width: utils.rem(500);
+      width: 100%;
+      box-sizing: border-box;
 
+      @media (max-width: 789px) {
+        max-width: calc(100vw - theme.$sidenav-width - theme.$spacing-lg * 2);
+      }
+      
       .type-info {
         @include theme.body-small;
         margin-bottom: theme.$spacing-sm;
@@ -122,7 +139,7 @@
   .shadow-examples {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: theme.$spacing-xl;
+    gap: theme.$spacing-lg;
   }
 
   .shadow-item {
@@ -192,10 +209,13 @@
 
   .card-examples {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: theme.$spacing-xl;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: theme.$spacing-lg;
+    justify-items: center;
 
     .example-card {
+      max-width: utils.rem(320);
+      width: 100%;
       @include theme.card;
       padding: theme.$spacing-lg;
 

@@ -1,16 +1,15 @@
-<mat-grid-list cols="2" rowHeight="350px" gutterSize="16px">
-  <mat-grid-tile>
-    <mat-card class="dashboard-card" routerLink="/counter">
+<h1>Dashboard</h1>
+<div class="dashboard-cards">
+  @for (card of cards; track card.title) {
+    <mat-card class="dashboard-card" [routerLink]="card.route">
       <mat-card-header>
-        <mat-card-title>Counter Demo</mat-card-title>
-        <mat-card-subtitle>NgRx Signals State Management</mat-card-subtitle>
+        <mat-card-title>{{ card.title }}</mat-card-title>
+        <mat-card-subtitle>{{ card.subtitle }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content class="card-content">
-        <mat-icon class="feature-icon">add_circle</mat-icon>
-        <p>Explore state management with NgRx Signals</p>
+        <mat-icon class="feature-icon">{{ card.icon }}</mat-icon>
+        <p>{{ card.description }}</p>
       </mat-card-content>
     </mat-card>
-  </mat-grid-tile>
-
-  <!-- Add more tiles here as we add features -->
-</mat-grid-list>
+  }
+</div>

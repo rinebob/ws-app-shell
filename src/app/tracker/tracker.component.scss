@@ -2,7 +2,6 @@
 @use '../../styles/utils' as utils;
 
 .tracker {
-  width: 100%;
   max-width: theme.$container-max-width;
   margin: 0 auto;
   padding: theme.$spacing-lg;
@@ -96,96 +95,103 @@
   }
 }
 
-// Holdings Section
-.holdings-section {
-  .holdings-card {
-    @include theme.card;
-    box-shadow: theme.$shadow-lg;
-    backdrop-filter: blur(utils.rem(10));
-    background: rgba(var(--surface-rgb), 0.9);
-    position: relative;
-    overflow: hidden;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        linear-gradient(45deg, transparent 65%, rgba(var(--primary-rgb), 0.1)),
-        linear-gradient(-45deg, transparent 75%, rgba(var(--accent-dark-rgb), 0.1));
-      pointer-events: none;
-    }
-
-    mat-card-header {
-      margin-bottom: theme.$spacing-lg;
-
-      mat-card-title {
-        @include theme.heading-3;
-        margin: 0;
-        color: var(--accent-dark);
-      }
-    }
-  }
-
-  .holdings-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-
-    th {
-      @include theme.body-small;
-      font-weight: theme.$font-weight-medium;
-      border-bottom: utils.rem(1) solid rgba(var(--accent), 0.3);
-      white-space: nowrap;
-      padding: theme.$spacing-md theme.$spacing-lg;
-      position: sticky;
-      top: 0;
-      background: rgba(var(--surface), 0.95);
+.tracker {
+  // Holdings Section
+  .holdings-section {
+    .holdings-card {
+      @include theme.card;
+      box-shadow: theme.$shadow-lg;
       backdrop-filter: blur(utils.rem(10));
-      z-index: 1;
-      color: var(--text-primary);
-      font-weight: theme.$font-weight-bold;
+      background: rgba(var(--surface-rgb), 0.9);
+      position: relative;
+      overflow: hidden;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+  
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+          linear-gradient(45deg, transparent 65%, rgba(var(--primary-rgb), 0.1)),
+          linear-gradient(-45deg, transparent 75%, rgba(var(--accent-dark-rgb), 0.1));
+        pointer-events: none;
+      }
+  
+      mat-card-header {
+        margin-bottom: theme.$spacing-lg;
+  
+        mat-card-title {
+          @include theme.heading-3;
+          margin: 0;
+          color: var(--accent-dark);
+        }
+      }
+
+      mat-card-content {
+        overflow: hidden;   
+      }
     }
-
-    td {
-      @include theme.body-base;
-      color: var(--text-primary);
-      padding: theme.$spacing-md theme.$spacing-lg;
-      border-bottom: utils.rem(1) solid rgba(var(--primary), 0.1);
-      transition: background-color 0.2s ease;
-
-      &.mono {
-        @include theme.mono;
-        color: var(--primary);
+  
+    .holdings-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+  
+      th {
+        @include theme.body-small;
+        font-weight: theme.$font-weight-medium;
+        border-bottom: utils.rem(1) solid rgba(var(--accent), 0.3);
+        white-space: nowrap;
+        padding: theme.$spacing-md theme.$spacing-lg;
+        position: sticky;
+        top: 0;
+        background: rgba(var(--surface), 0.95);
+        backdrop-filter: blur(utils.rem(10));
+        z-index: 1;
+        color: var(--text-primary);
+        font-weight: theme.$font-weight-bold;
       }
-
-      &.positive {
-        color: var(--accent);
-        text-shadow: 0 0 10px rgba(var(--accent), 0.3);
+  
+      td {
+        @include theme.body-base;
+        color: var(--text-primary);
+        padding: theme.$spacing-md theme.$spacing-lg;
+        border-bottom: utils.rem(1) solid rgba(var(--primary), 0.1);
+        transition: background-color 0.2s ease;
+  
+        &.mono {
+          @include theme.mono;
+          color: var(--primary);
+        }
+  
+        &.positive {
+          color: var(--accent);
+          text-shadow: 0 0 10px rgba(var(--accent), 0.3);
+        }
+  
+        &.negative {
+          color: var(--warn);
+          text-shadow: 0 0 10px rgba(var(--warn), 0.3);
+        }
       }
-
-      &.negative {
-        color: var(--warn);
-        text-shadow: 0 0 10px rgba(var(--warn), 0.3);
-      }
-    }
-
-    tr {
-      transition: transform 0.2s ease, background-color 0.2s ease;
-
-      &:hover {
-        background: rgba(var(--primary), 0.05);
-        transform: translateX(utils.rem(4));
-
-        td {
-          border-bottom-color: rgba(var(--primary), 0.2);
+  
+      tr {
+        transition: transform 0.2s ease, background-color 0.2s ease;
+  
+        &:hover {
+          background: rgba(var(--primary), 0.05);
+          transform: translateX(utils.rem(4));
+  
+          td {
+            border-bottom-color: rgba(var(--primary), 0.2);
+          }
         }
       }
     }
   }
+
 }

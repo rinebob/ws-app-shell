@@ -6,7 +6,17 @@
   padding: theme.$spacing-lg;
 }
 
+.dashboard-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: theme.$spacing-lg;
+  margin-bottom: theme.$spacing-xl;
+}
+
 .dashboard-card {
+  max-width: utils.rem(300);
   width: 100%;
   height: 100%;
   cursor: pointer;
@@ -23,7 +33,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: theme.$spacing-lg;
+    padding: theme.$spacing-md theme.$spacing-sm;
     text-align: center;
 
     .feature-icon {

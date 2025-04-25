@@ -3,7 +3,6 @@
 
 :host {
   display: block;
-  width: 100%;
   padding: theme.$spacing-lg;
   max-width: theme.$container-max-width;
   margin: 0 auto;
@@ -65,6 +64,7 @@
 
   mat-card-actions {
     display: flex;
+    flex-wrap: wrap;
     gap: theme.$spacing-sm;
     justify-content: center;
     padding: theme.$spacing-md;

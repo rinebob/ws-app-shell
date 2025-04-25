@@ -1,32 +1,32 @@
 <div [class.dark-theme]="isDarkTheme">
-  <app-header (toggleSidenav)="sidenav.toggle()"></app-header>
+  <app-header (menuClick)="sidenav.toggle()"></app-header>
 
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side" opened>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <span class="material-icons">home</span>
-        Home
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span>Dashboard</span>
       </a>
       <a mat-list-item routerLink="/counter" routerLinkActive="active">
-        <span class="material-icons">calculate</span>
-        Counter
+        <mat-icon>calculate</mat-icon>
+        <span>Counter</span>
       </a>
       <a mat-list-item routerLink="/design-system" routerLinkActive="active">
-        <span class="material-icons">palette</span>
-        Design System
+        <mat-icon>palette</mat-icon>
+        <span>Design System</span>
       </a>
       <a mat-list-item routerLink="/tracker" routerLinkActive="active">
-        <span class="material-icons">trending_up</span>
-        Dividend Tracker
+        <mat-icon>trending_up</mat-icon>
+        <span>Dividend Tracker</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
+    <router-outlet></router-outlet>
 
-    <div class="content-container">
-      <router-outlet></router-outlet>
-    </div>
+    <!-- <div class="content-container">
+    </div> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
 </div>

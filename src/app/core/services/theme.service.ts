@@ -15,6 +15,7 @@ export class ThemeService {
   // Use signals for reactive theme state
   private colorMode = signal<ColorMode>(this.getInitialColorMode());
   private themeStyle = signal<ThemeStyle>(this.getInitialThemeStyle());
+  public readonly themeStyleSignal = this.themeStyle;
 
   constructor() {
     // Set up effects to handle theme changes
@@ -89,7 +90,7 @@ export class ThemeService {
   }
 
   isDarkMode(): boolean {
-    console.log('thSvc iDM isDarkMode called');
+    // console.log('thSvc iDM isDarkMode called');
     return this.colorMode() === 'dark';
   }
 }

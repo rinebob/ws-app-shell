@@ -87,16 +87,10 @@ $spacing-md: utils.rem(16);
 $spacing-lg: utils.rem(24);
 $spacing-xl: utils.rem(32);
 
-// Z-index
-$z-index: (
-  header: 100,
-  modal: 1000,
-  tooltip: 1500,
-  dropdown: 2000
-);
 
 // Layout
 $container-max-width: null !default;
+$card-max-width: utils.rem(384); // 384px = 24rem
 $header-height: utils.rem(64);
 $sidenav-width: utils.rem(250);
 
